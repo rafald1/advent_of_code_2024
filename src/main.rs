@@ -1,9 +1,12 @@
 mod day_01_historian_hysteria;
+mod day_02_red_nosed_reports;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let solutions = [
         day_01_historian_hysteria::part_1::solve,
         day_01_historian_hysteria::part_2::solve,
+        day_02_red_nosed_reports::part_1::solve,
+        day_02_red_nosed_reports::part_2::solve,
     ];
 
     for solution in solutions {
