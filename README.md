@@ -15,5 +15,10 @@ The purpose of this project is to:
 - `test_input/`: Directory where test input files are stored, formatted as `xx.txt` (or `xx_y.txt` if necessary for multiple test cases).
 
 ### [Day 1](https://adventofcode.com/2024/day/1)
-
 This was an enjoyable puzzle. Part 2 provided an opportunity to optimize the solution from O(n<sup>2</sup>) to O(n) using a `HashMap`.
+
+### [Day 2](https://adventofcode.com/2024/day/2)
+I had some trouble writing a function to validate whether the levels in the report were safe. Part 2 relied on this function even more and forced me to refactor my Part 1 solution before I could move on to solving Part 2.
+
+### [Day 3](https://adventofcode.com/2024/day/3)
+Initially, I tried to solve this puzzle without using regex, but parsing the input manually at 6 AM proved more challenging than I anticipated. Later, I refactored the code, dropping regex in favor of a custom parsing function, which improved performance.
