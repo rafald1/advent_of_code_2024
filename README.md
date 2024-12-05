@@ -28,3 +28,7 @@ I experimented with different approaches to solve this puzzle. Initially, I spli
 
 Ultimately, I switched to storing the input data as a `Vec<Vec<char>>` and validated neighbor positions by checking if x and y were within the required range. For Part 1, I prioritized readability by using the `.all()` method, even though it came with a slight performance trade-off.
 
+### [Day 5](https://adventofcode.com/2024/day/5)
+My solutions required some refinement, particularly for Part 2. I eventually decided to use a `HashMap` to store page ordering rules, which helped reduce the number of comparisons needed to check if the pages were in the correct order.
+
+Part 2 took me by surprise, and I ended up unnecessarily implementing a sorting function by removing pages that were out of order and inserting them into the correct position. At one point, I even considered implementing a topological sort to optimize my sorting logic. Fortunately, after taking a short break, I realized that the .sort_by() method was the correct solution. This not only simplified my code but also improved its performance.
