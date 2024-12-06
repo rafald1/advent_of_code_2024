@@ -3,6 +3,7 @@ mod day_02_red_nosed_reports;
 mod day_03_mull_it_over;
 mod day_04_ceres_search;
 mod day_05_print_queue;
+mod day_06_guard_gallivant;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let solutions = [
@@ -16,6 +17,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         day_04_ceres_search::part_2::solve,
         day_05_print_queue::part_1::solve,
         day_05_print_queue::part_2::solve,
+        day_06_guard_gallivant::part_1::solve,
+        day_06_guard_gallivant::part_2::solve,
     ];
 
     for solution in solutions {
