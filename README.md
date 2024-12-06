@@ -31,4 +31,10 @@ Ultimately, I switched to storing the input data as a `Vec<Vec<char>>` and valid
 ### [Day 5](https://adventofcode.com/2024/day/5)
 My solutions required some refinement, particularly for Part 2. I eventually decided to use a `HashMap` to store page ordering rules, which helped reduce the number of comparisons needed to check if the pages were in the correct order.
 
-Part 2 took me by surprise, and I ended up unnecessarily implementing a sorting function by removing pages that were out of order and inserting them into the correct position. At one point, I even considered implementing a topological sort to optimize my sorting logic. Fortunately, after taking a short break, I realized that the .sort_by() method was the correct solution. This not only simplified my code but also improved its performance.
+Part 2 took me by surprise, and I ended up unnecessarily implementing a sorting function by removing pages that were out of order and inserting them into the correct position. At one point, I even considered implementing a topological sort to optimize my sorting logic. Fortunately, after taking a short break, I realized that the `.sort_by()` method was the correct solution. This not only simplified my code but also improved its performance.
+
+### [Day 6](https://adventofcode.com/2024/day/6)
+My initial solution modified the map (`Vec<Vec<char>`) to mark visited cells. During refactoring, I switched to using a `HashSet` to record visited cells, which simplified the code at a slight performance cost.
+
+For Part 2, my initial solution was a brute-force approach. I attempted to insert an additional obstacle at every cell. This required creating a copy of the map (`Vec<Vec<u8>>`) because I was modifying it during traversal. I couldn't devise a proper way to detect infinite loops, so I assumed that if the guard's step count exceeded a certain threshold, they were stuck in an infinite loop. Despite these flaws, the solution ran in 0.9 seconds.
+The refactored version avoids modifying the map entirely. It only inserts obstacles on the guard's route and properly handles infinite loop detection.
