@@ -38,3 +38,6 @@ My initial solution modified the map (`Vec<Vec<char>`) to mark visited cells. Du
 
 For Part 2, my initial solution was a brute-force approach. I attempted to insert an additional obstacle at every cell. This required creating a copy of the map (`Vec<Vec<u8>>`) because I was modifying it during traversal. I couldn't devise a proper way to detect infinite loops, so I assumed that if the guard's step count exceeded a certain threshold, they were stuck in an infinite loop. Despite these flaws, the solution ran in 0.9 seconds.
 The refactored version avoids modifying the map entirely. It only inserts obstacles on the guard's route and properly handles infinite loop detection.
+
+### [Day 7](https://adventofcode.com/2024/day/7)
+Initially, I struggled to solve this puzzle using recursion, and my first solution generated all possible combinations of operations. Part 2 was particularly challenging. At first, I misread the instructions and implemented an incorrect solution. Later, I created a solution that worked on the test data but failed with my actual input. Eventually, I identified the root issue: equations that produce the correct result before all terms are used should be considered invalid. Adding this condition resolved the problem. The refactored version, which uses recursion, is a significant improvement over my initial approach.
