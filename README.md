@@ -41,3 +41,11 @@ The refactored version avoids modifying the map entirely. It only inserts obstac
 
 ### [Day 7](https://adventofcode.com/2024/day/7)
 Initially, I struggled to solve this puzzle using recursion, and my first solution generated all possible combinations of operations. Part 2 was particularly challenging. At first, I misread the instructions and implemented an incorrect solution. Later, I created a solution that worked on the test data but failed with my actual input. Eventually, I identified the root issue: equations that produce the correct result before all terms are used should be considered invalid. Adding this condition resolved the problem. The refactored version, which uses recursion, is a significant improvement over my initial approach.
+
+### [Day 8](https://adventofcode.com/2024/day/8)
+This puzzle was fairly straightforward for me. My refactored version is not significantly different from the original solution. The only notable mistake I made was generating `n * (n - 1)` combinations of possible pairs instead of the `n * (n - 1) / 2` unique pairs. However, this allowed me to simplify the logic by only searching in one direction for antinodes after calculating the delta between two antennas.
+
+### [Day 9](https://adventofcode.com/2024/day/9)
+I found several ways to improve my Part 1 solution, and the final version ended up being quite concise. Initially, I used the `.position()` method to find `free_space_index`, but this approach left a lot of room for performance improvements. The next iteration stored all indices of free space in a `Vec`, and a subsequent version also added a `Vec` for occupied space indices. In the final version, I replaced these vectors with two `while` loops to efficiently update `free_space_index` and `occupied_space_index`.
+
+Part 2 required a different approach to processing the input data. I separated file and free space information, storing them in two `Vec<(u32, u32)>`, where the first value indicated the starting index, and the second value represented the length. Unfortunately, I couldn't improve on my initial solution—every attempt at optimization resulted in a performance loss, leaving me slightly unsatisfied.
