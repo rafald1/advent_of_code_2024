@@ -7,6 +7,7 @@ mod day_06_guard_gallivant;
 mod day_07_bridge_repair;
 mod day_08_resonant_collinearity;
 mod day_09_disk_fragmenter;
+mod day_10_hoof_it;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let solutions = [
@@ -28,6 +29,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         day_08_resonant_collinearity::part_2::solve,
         day_09_disk_fragmenter::part_1::solve,
         day_09_disk_fragmenter::part_2::solve,
+        day_10_hoof_it::part_1::solve,
+        day_10_hoof_it::part_2::solve,
     ];
 
     for solution in solutions {
