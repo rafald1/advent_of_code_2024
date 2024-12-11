@@ -56,3 +56,10 @@ I took my time solving this puzzle because I had too many ideas and couldn’t c
 Eventually, I implemented a solution that stored all unique possible next neighbor locations for each step. For example, if a starting point had two valid neighbors, I would store both `(x, y)` positions. I then repeated this process, looking for all unique possible next neighbor locations until the endpoint was reached. In the refactored version, I replaced the `HashSet` with a `Vec` to store all possible next neighbor locations, sorting it and removing duplicates. This approach was significantly faster. I continued refining the solution before moving on to Part 2, which gave me enough time to explore different ways of traversing the area.
 
 For Part 2, I decided to use recursion, which turned out to be surprisingly easy to implement. With the `get_valid_neighbours()` function already in place, the final solution came together quickly.
+
+### [Day 11](https://adventofcode.com/2024/day/11)
+I solved Part 1 and thought it was the easiest Part 1 so far. However, that was only true because the naive solution was able to handle the required number of loops.
+
+Part 2 was the most straightforward so far — it simply required tripling the number of loops. My naive solution was no longer sufficient. I started by inspecting how different numbers changed with each loop, hoping to find a pattern. However, I quickly realized it would be difficult to predict how a given number would evolve after `n` iterations. Then, the obvious solution struck me: I needed to use a `HashMap` to store numbers as keys and their respective counts as values. This significantly reduced the number of operations required per loop iteration.
+
+My `part_1.rs` file contains the naive solution, while `part_2.rs` implements the optimized solution using a `HashMap`.
