@@ -63,3 +63,19 @@ I solved Part 1 and thought it was the easiest Part 1 so far. However, that was 
 Part 2 was the most straightforward so far — it simply required tripling the number of loops. My naive solution was no longer sufficient. I started by inspecting how different numbers changed with each loop, hoping to find a pattern. However, I quickly realized it would be difficult to predict how a given number would evolve after `n` iterations. Then, the obvious solution struck me: I needed to use a `HashMap` to store numbers as keys and their respective counts as values. This significantly reduced the number of operations required per loop iteration.
 
 My `part_1.rs` file contains the naive solution, while `part_2.rs` implements the optimized solution using a `HashMap`.
+
+### [Day 12](https://adventofcode.com/2024/day/12)
+This puzzle was quite complex for me. I began by processing the input and grouping cells into plots based on their plant type using a `HashMap`. The keys were discarded, and only the values representing the `x` and `y` positions of the cells were kept. This resulted in a structure of type `Vec<Vec<(u32, u32)>>`, where each element of the outer vector contained a vector of cells with the same plant type. Next, each group of cells with the same plant type was further divided into separate plots. For each individual plot, the perimeter was calculated by checking the neighbours of each cell. If a neighbour was not part of the same plot, the perimeter value was increased by 1. Finally, the perimeter value for each plot was multiplied by the number of cells in the plot to produce the final result.
+
+I spent a considerable amount of time on Part 2 trying to devise a method to count edges or corners, as both numbers are equal. In the end, the solution was surprisingly straightforward.
+
+I created four sets of neighbours, each containing three directions:
+- **N, E, NE**
+- **S, E, SE**
+- **S, W, SW**
+- **N, W, NW**
+
+For each of these sets, I checked and increased the corner count by 1 if either of the following conditions was met:
+- Neighbours 1 and 2 were both present, but neighbour 3 was not part of the plot.
+- Neighbours 1 and 2 were both not part of the plot.  
+
