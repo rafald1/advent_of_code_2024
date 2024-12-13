@@ -10,6 +10,7 @@ mod day_09_disk_fragmenter;
 mod day_10_hoof_it;
 mod day_11_plutonian_pebbles;
 mod day_12_garden_groups;
+mod day_13_claw_contraption;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let solutions = [
@@ -37,6 +38,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         day_11_plutonian_pebbles::part_2::solve,
         day_12_garden_groups::part_1::solve,
         day_12_garden_groups::part_2::solve,
+        day_13_claw_contraption::part_1::solve,
+        day_13_claw_contraption::part_2::solve,
     ];
 
     for solution in solutions {
