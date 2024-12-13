@@ -79,3 +79,25 @@ For each of these sets, I checked and increased the corner count by 1 if either 
 - Neighbours 1 and 2 were both present, but neighbour 3 was not part of the plot.
 - Neighbours 1 and 2 were both not part of the plot.  
 
+### [Day 13](https://adventofcode.com/2024/day/13)
+This was a mathematical puzzle. Processing the input file was the harder part for me. Part 1 was solved without transforming the two equations that could be built with each input set of six numbers. There were two unknown variables: `a` (representing how many times button A was pressed) and `b` (representing how many times button B was pressed). For `a` in the range 0 to 100 inclusive, the value of `b` was calculated based on the first equation, and then both values were used in the second equation to validate whether they matched the required results. Since the number of button presses had to be an unsigned integer (as pressing a button 85.12 times is not possible), a condition was enforced during the calculation of `b` to ensure that the division produced no remainder before it could be completed.
+
+For Part 2, the two equations were transformed, allowing the values of `a` and `b` to be directly calculated. However, solving the transformed equations occasionally produced invalid values for `a` and `b`. To address this, the `abs_diff` method was used during subtraction to prevent `u64` values from overflowing, and a condition `numerator % denominator == 0` was checked before division. This process ensured that any invalid results were properly discarded.
+
+Equation transformations:
+- a * x<sub>1</sub> + b * x<sub>2</sub> = x<sub>result</sub>
+- a = (x<sub>result</sub> - b * x<sub>2</sub>) / x<sub>1</sub>
+- a * y<sub>1</sub> + b * y<sub>2</sub> = y<sub>result</sub>
+- ((x<sub>result</sub> - b * x<sub>2</sub>) / x<sub>1</sub>) * y<sub>1</sub> + b * y<sub>2</sub> = y<sub>result</sub>
+- b = (y<sub>result</sub> * x<sub>1</sub> - x<sub>result</sub> * y<sub>1</sub>) / (x<sub>2</sub> * y<sub>1</sub> - x<sub>1</sub> * y<sub>2</sub>)
+
+Where:
+- x<sub>1</sub> - x position change when button A is pressed
+- x<sub>2</sub> - x position change when button B is pressed
+- y<sub>1</sub> - y position change when button A is pressed
+- y<sub>2</sub> - y position change when button B is pressed
+- x<sub>result</sub> - x position that had to be reached
+- y<sub>result</sub> - y position that had to be reached
+
+Before calculating, it was necessary to ensure that x<sub>2</sub> * y<sub>1</sub> ≠ x<sub>1</sub> * y<sub>2</sub>, as dividing by zero is undefined.
+This condition means that the two sets of coefficients (x<sub>1</sub>, y<sub>1</sub>) and (x<sub>2</sub>, y<sub>2</sub>) must not be proportional to each other. This also allowed me to remove unnecessary code in Part 1 that was expecting more than one valid set of `a` and `b`.
