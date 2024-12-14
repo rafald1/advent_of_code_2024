@@ -101,3 +101,8 @@ Where:
 
 Before calculating, it was necessary to ensure that x<sub>2</sub> * y<sub>1</sub> ≠ x<sub>1</sub> * y<sub>2</sub>, as dividing by zero is undefined.
 This condition means that the two sets of coefficients (x<sub>1</sub>, y<sub>1</sub>) and (x<sub>2</sub>, y<sub>2</sub>) must not be proportional to each other. This also allowed me to remove unnecessary code in Part 1 that was expecting more than one valid set of `a` and `b`.
+
+### [Day 14](https://adventofcode.com/2024/day/14)
+Part 1 was straightforward, as the exact guard locations after `n` iterations could be calculated using modulo arithmetic.
+
+Part 2, however, was far more enigmatic, stating that the guards would form a Christmas tree after `n` iterations. I explored various approaches but initially failed to determine the correct iteration number. The final solution is slow because it checks all possible unique iterations, of which there are 10,403 (103 × 101). After each iteration, the guards are divided into groups, and the iteration with the smallest number of groups is assumed to provide the correct solution.
