@@ -13,6 +13,7 @@ mod day_12_garden_groups;
 mod day_13_claw_contraption;
 mod day_14_restroom_redoubt;
 mod day_15_warehouse_woes;
+mod day_16_reindeer_maze;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let solutions = [
@@ -46,6 +47,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         day_14_restroom_redoubt::part_2::solve,
         day_15_warehouse_woes::part_1::solve,
         day_15_warehouse_woes::part_2::solve,
+        day_16_reindeer_maze::part_1::solve,
+        day_16_reindeer_maze::part_2::solve,
     ];
 
     for solution in solutions {
