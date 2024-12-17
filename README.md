@@ -106,3 +106,49 @@ This condition means that the two sets of coefficients (x<sub>1</sub>, y<sub>1</
 Part 1 was straightforward, as the exact guard locations after `n` iterations could be calculated using modulo arithmetic.
 
 Part 2, however, was far more enigmatic, stating that the guards would form a Christmas tree after `n` iterations. I explored various approaches but initially failed to determine the correct iteration number. The final solution is slow because it checks all possible unique iterations, of which there are 10,403 (103 × 101). After each iteration, the guards are divided into groups, and the iteration with the smallest number of groups is assumed to provide the correct solution.
+
+### [Day 15](https://adventofcode.com/2024/day/15)
+The puzzle was about moving boxes in a warehouse. The robot tried to move in a predefined way.  
+Part 1 was relatively easy to implement. It was possible to move multiple boxes at once if they were aligned (one after another) in the direction of the robot's movement. Boxes could be moved if there was an empty space behind them.
+
+Part 2 was more challenging as each box occupied 2 horizontal spaces. When the robot moved horizontally, the box or boxes moved by half of their length. The interesting part was when the robot moved vertically and encountered a box. This box could push up to two other boxes, and those two boxes could push up to three new boxes, and so on. I decided not to keep track of the robot anymore, and its position was reacquired from the warehouse state before each move. This allowed me to add the robot to the pool of objects whose positions would be swapped. The pool of such objects was sorted to ensure that the furthest objects were moved to empty spaces first.
+
+### [Day 16](https://adventofcode.com/2024/day/16)
+This puzzle provided an opportunity to revisit shortest path algorithms. 
+
+Part 1 was a single-pair shortest path problem in an undirected, cyclic graph. Continuing in the same direction was cheap, but changing direction was expensive. It was enough to find the lowest score path without needing to store the actual path. I used `BinaryHeap` with `Reverse` to make it a min-heap. The final version is concise.
+
+Part 2 was more complex, as there were multiple paths with the lowest score. The task was to find all unique tiles on these paths. I used the following:
+- `BinaryHeap` with `Reverse` for the min-heap,
+- a `HashMap` to store the lowest scores from the starting tile to each tile,
+- a second `HashMap` to store predecessors.
+
+The lowest score path was then reconstructed using predecessors, and finally, unique tiles were counted.
+
+### [Day 17](https://adventofcode.com/2024/day/17)
+Part 1 required carefully transcribing all the possible operations that could occur based on the instruction number. Operations were performed using one of two types of operands. One operand type had some additional rules to follow when built. Once everything was in place, it was simply a matter of feeding the input and getting the result of these computations.
+
+Part 2 was challenging, as it required finding an input value that would produce the required output. A brute-force approach didn't seem feasible, so inspecting the calculation machine was in order.
+
+The machine produced only series of 3-bit numbers (0–7 in decimal). Testing different values revealed that the output size followed specific ranges:
+- 0 – 7 → output with 1 number
+- 8 – 63 → output with 2 numbers
+- 64 – 511 → output with 3 numbers
+- 512 – 4095 → output with 4 numbers
+- 4096 – 32767 → output with 5 numbers
+
+To make it clearer, the search number ranges are:
+- from 0 to 2<sup>3</sup> - 1,
+- from 2<sup>3</sup> to 2<sup>6</sup> - 1,
+- from 2<sup>6</sup> to 2<sup>9</sup> - 1,
+- from 2<sup>9</sup> to 2<sup>12</sup> - 1,
+- from 2<sup>12</sup> to 2<sup>15</sup> - 1.
+
+If our searched value is supposed to produce output with 16 numbers, we are looking at the search range between 2<sup>45</sup> to 2<sup>48</sup> - 1.
+
+I used the following approach:
+
+- Start by finding a number from 0 to 7 that produces an output with just the last number of the expected output.
+- Append another number from 0 to 7 by shifting the bits left by 3 and performing a bitwise OR with the new number.
+- One of the 8 new numbers would produce an output that matches the last two numbers.
+- Continue appending numbers from 0 to 7 and checking until the number produces all the numbers from the expected output.
