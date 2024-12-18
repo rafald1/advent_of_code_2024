@@ -107,6 +107,13 @@ Part 1 was straightforward, as the exact guard locations after `n` iterations co
 
 Part 2, however, was far more enigmatic, stating that the guards would form a Christmas tree after `n` iterations. I explored various approaches but initially failed to determine the correct iteration number. The final solution is slow because it checks all possible unique iterations, of which there are 10,403 (103 × 101). After each iteration, the guards are divided into groups, and the iteration with the smallest number of groups is assumed to provide the correct solution.
 
+#### Updates
+The calculation of guard positions based on their starting position and velocity has been simplified by using the `.rem_euclid()` method.
+
+Part 2 has been refactored to improve the speed of solving the puzzle:
+- A `HashSet` is now used instead of a `Vec` to speed up lookups using the `.contains()` method and to efficiently remove duplicate guard positions.
+- The method for determining the iteration that forms the tree has been revised. Instead of splitting guards into groups, a "closeness factor" is calculated. This factor increases each time a guard has a neighboring guard, providing a faster measure for determining the desired iteration.
+
 ### [Day 15](https://adventofcode.com/2024/day/15)
 The puzzle was about moving boxes in a warehouse. The robot tried to move in a predefined way.  
 Part 1 was relatively easy to implement. It was possible to move multiple boxes at once if they were aligned (one after another) in the direction of the robot's movement. Boxes could be moved if there was an empty space behind them.
