@@ -44,8 +44,8 @@ fn simulate_guard_positions_after_n_seconds(
         .iter()
         .map(|[px, py, vx, vy]| {
             [
-                ((px + vx * n) % width + width) % width,
-                ((py + vy * n) % height + height) % height,
+                (px + vx * n).rem_euclid(width),
+                (py + vy * n).rem_euclid(height),
             ]
         })
         .collect()
