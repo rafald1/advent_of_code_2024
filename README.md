@@ -152,3 +152,8 @@ I used the following approach:
 - Append another number from 0 to 7 by shifting the bits left by 3 and performing a bitwise OR with the new number.
 - One of the 8 new numbers would produce an output that matches the last two numbers.
 - Continue appending numbers from 0 to 7 and checking until the number produces all the numbers from the expected output.
+
+### [Day 18](https://adventofcode.com/2024/day/18)
+This was a shortest path problem. I used breadth-first search (BFS) to solve Part 1. There was no need to reconstruct the path; simply counting the number of steps taken was sufficient to solve it.
+
+For Part 2, I initially used a naive approach by checking after each new obstacle whether the end position could still be reached. The next version involved constructing the shortest path and verifying if the newly added obstacle fell on this path. However, this approach proved to be incorrect, as a new path could still be formed around the obstacle. To handle this, I introduced an additional check to determine if an alternative path could be created, but this solution was inefficient. The final approach utilized binary search to efficiently reduce the number of checks needed to determine whether a path could still be formed between the start and end positions. This allowed me to pinpoint the exact obstacle that caused the end position to become unreachable.
