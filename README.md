@@ -164,3 +164,11 @@ I used the following approach:
 This was a shortest path problem. I used breadth-first search (BFS) to solve Part 1. There was no need to reconstruct the path; simply counting the number of steps taken was sufficient to solve it.
 
 For Part 2, I initially used a naive approach by checking after each new obstacle whether the end position could still be reached. The next version involved constructing the shortest path and verifying if the newly added obstacle fell on this path. However, this approach proved to be incorrect, as a new path could still be formed around the obstacle. To handle this, I introduced an additional check to determine if an alternative path could be created, but this solution was inefficient. The final approach utilized binary search to efficiently reduce the number of checks needed to determine whether a path could still be formed between the start and end positions. This allowed me to pinpoint the exact obstacle that caused the end position to become unreachable.
+
+### [Day 19](https://adventofcode.com/2024/day/19)
+
+Initially, my approach went partially in the wrong direction. I attempted to reduce the number of patterns by checking whether the design contained them. I then built a recursive function that checked if the design started with each valid pattern. If it did, the function passed a shortened version of the design (reduced by the matched pattern's length) to itself recursively. This approach worked perfectly on the test data but failed on my input.
+
+The issue arose with the third design, which was longer than the previous two and had 73 valid patterns. Initially, I focused on further reducing the number of valid patterns, but I couldn't find a universal solution. Eventually, I introduced memoization to minimize the number of recursive calls, which turned out to be a viable solution. Removing my initial function that attempted to reduce the pattern number actually increased performance.
+
+Part 2 required slight modifications to the memoization logic. Instead of breaking early when any valid way to construct the design was found, the solution needed to explore all branches to account for every possible construction.
