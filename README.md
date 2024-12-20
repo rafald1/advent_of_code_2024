@@ -166,9 +166,15 @@ This was a shortest path problem. I used breadth-first search (BFS) to solve Par
 For Part 2, I initially used a naive approach by checking after each new obstacle whether the end position could still be reached. The next version involved constructing the shortest path and verifying if the newly added obstacle fell on this path. However, this approach proved to be incorrect, as a new path could still be formed around the obstacle. To handle this, I introduced an additional check to determine if an alternative path could be created, but this solution was inefficient. The final approach utilized binary search to efficiently reduce the number of checks needed to determine whether a path could still be formed between the start and end positions. This allowed me to pinpoint the exact obstacle that caused the end position to become unreachable.
 
 ### [Day 19](https://adventofcode.com/2024/day/19)
-
 Initially, my approach went partially in the wrong direction. I attempted to reduce the number of patterns by checking whether the design contained them. I then built a recursive function that checked if the design started with each valid pattern. If it did, the function passed a shortened version of the design (reduced by the matched pattern's length) to itself recursively. This approach worked perfectly on the test data but failed on my input.
 
 The issue arose with the third design, which was longer than the previous two and had 73 valid patterns. Initially, I focused on further reducing the number of valid patterns, but I couldn't find a universal solution. Eventually, I introduced memoization to minimize the number of recursive calls, which turned out to be a viable solution. Removing my initial function that attempted to reduce the pattern number actually increased performance.
 
 Part 2 required slight modifications to the memoization logic. Instead of breaking early when any valid way to construct the design was found, the solution needed to explore all branches to account for every possible construction.
+
+### [Day 20](https://adventofcode.com/2024/day/20)
+This was a straightforward puzzle. I started by constructing the only possible path from the start to the end position in the maze.
+
+Part 1 involved finding potential shortcuts by bypassing a single segment of the wall at a time, with the minimum distance between path tiles for a valid shortcut being 4. The task was to identify shortcuts that save `n` picoseconds. To optimize, I reduced the number of comparisons by starting from the current tile and comparing it with the tile at `current + n`.
+
+Part 2 introduced additional complexity, as it allowed bypassing multiple wall segments. The maximum Manhattan distance between two tiles for a valid shortcut was 20, which required minor adjustments to the implementation.
