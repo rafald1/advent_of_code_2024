@@ -18,6 +18,7 @@ mod day_17_chronospatial_computer;
 mod day_18_ram_run;
 mod day_19_linen_layout;
 mod day_20_race_condition;
+mod day_21_keypad_conundrum;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let solutions = [
@@ -61,6 +62,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         day_19_linen_layout::part_2::solve,
         day_20_race_condition::part_1::solve,
         day_20_race_condition::part_2::solve,
+        day_21_keypad_conundrum::part_1::solve,
+        day_21_keypad_conundrum::part_2::solve,
     ];
 
     for solution in solutions {
