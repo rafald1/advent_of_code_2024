@@ -178,3 +178,18 @@ This was a straightforward puzzle. I started by constructing the only possible p
 Part 1 involved finding potential shortcuts by bypassing a single segment of the wall at a time, with the minimum distance between path tiles for a valid shortcut being 4. The task was to identify shortcuts that save `n` picoseconds. To optimize, I reduced the number of comparisons by starting from the current tile and comparing it with the tile at `current + n`.
 
 Part 2 introduced additional complexity, as it allowed bypassing multiple wall segments. The maximum Manhattan distance between two tiles for a valid shortcut was 20, which required minor adjustments to the implementation.
+
+### [Day 21](https://adventofcode.com/2024/day/21)
+This was a mind-bending puzzle that took hours to solve. The solution involved:
+- Discovering all possible minimal paths (key press sequences) between each key on a numeric keypad and a directional keypad.
+- Generating all possible sequences of key presses needed to enter other sequences of key presses.
+- Filtering out sequences longer than the shortest sequence.
+
+Part 1 was solved by expanding sequences across layers of keypads. While this approach worked, it was relatively slow for the numeric keypad, two directional keypads used by robots, and the final directional keypad used by the person.
+
+Part 2 introduced 23 additional keypads operated by robots, which required a different approach. A recursive function with memoization was used to calculate sequence lengths.
+
+### [Day 22](https://adventofcode.com/2024/day/22)
+Part 1 involved processing input data through a set of required operations multiple times.
+
+Part 2 added complexity by requiring the calculation of 4 differences between every 5 consecutive values and adding the last value for each unique sequence. A `HashMap` tracked the value for each unique sequence, while a `HashSet` ensured that each value was incremented only once per input entry.
