@@ -193,3 +193,10 @@ Part 2 introduced 23 additional keypads operated by robots, which required a dif
 Part 1 involved processing input data through a set of required operations multiple times.
 
 Part 2 added complexity by requiring the calculation of 4 differences between every 5 consecutive values and adding the last value for each unique sequence. A `HashMap` tracked the value for each unique sequence, while a `HashSet` ensured that each value was incremented only once per input entry.
+
+### [Day 23](https://adventofcode.com/2024/day/23)
+This puzzle was graph-based. The first step was to create a `HashMap` that stored computer names as keys and the names of the computers they were connected to as values.
+
+To solve Part 1, it was necessary to find all unique sets of three connected computers and filter out those sets where none of the computer names started with the required letter.
+
+Part 2 was more challenging and required finding the largest clique (a subset of vertices in an undirected graph where every two distinct vertices are adjacent). I implemented the Bron–Kerbosch algorithm to identify all cliques, followed by a few additional transformations to derive the answer.
