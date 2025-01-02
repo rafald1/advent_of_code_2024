@@ -200,3 +200,60 @@ This puzzle was graph-based. The first step was to create a `HashMap` that store
 To solve Part 1, it was necessary to find all unique sets of three connected computers and filter out those sets where none of the computer names started with the required letter.
 
 Part 2 was more challenging and required finding the largest clique (a subset of vertices in an undirected graph where every two distinct vertices are adjacent). I implemented the Bron–Kerbosch algorithm to identify all cliques, followed by a few additional transformations to derive the answer.
+
+### [Day 24](https://adventofcode.com/2024/day/24)
+This puzzle was based on boolean logic gates. Three types of gates were used: AND, OR, and XOR.
+
+Part 1 required evaluating the output of the provided input values. The system aimed to produce a number by combining the bits on all wires starting with `z`. The challenge was that some gates could not be evaluated initially because their input values were not yet determined. I treated the list of provided gates as a queue, removing the first element and attempting to evaluate its output. If the output could be evaluated, it was added to the known values. Otherwise, the gate was placed back at the end of the queue.
+
+Part 2 revealed that the system was attempting to add two binary numbers but was faulty. Specifically, there were 4 pairs of output wires that had been swapped, and the task was to identify these 8 wires. To tackle this, I began by researching ripple carry adders.
+
+```
+          a   b
+          │   │
+          v   v
+       ┌─────────┐
+       │ one-bit │
+c_in ─>│  full   │─> c_out
+       │  adder  │
+       └─────────┘
+            │
+            v
+            s
+```
+
+A one-bit full adder is a circuit that computes the arithmetic sum of three bits. It consists of three inputs: a, b, and c<sub>in</sub> (carry in), and two outputs: s (sum) and c<sub>out</sub> (carry out).
+
+In this puzzle, the first z wire bit is produced by a one-bit half adder, while the last z wire bit is the c<sub>out</sub> of the previous calculation.
+
+Gate implementation of a one-bit half adder using AND and XOR gates:
+```
+a ───┬─┌───┐
+     │ │XOR│─ s
+b ─┬───└───┘
+   │ └─┌───┐
+   │   │AND│─ c_out
+   └───└───┘
+```
+
+Gate implementation of a one-bit full adder using AND, OR, and XOR gates:
+```
+a ───┬─┌───┐
+     │ │XOR│───┬─┌───┐
+b ─┬───└───┘   │ │XOR│──────── s
+   │ │       ┌───└───┘
+   │ │       │ └─┌───┐
+   │ │       │   │AND│──┌───┐
+   │ └─┌───┐ ├───└───┘  │OR │─ c_out
+   │   │AND│────────────└───┘
+   └───└───┘ │
+c_in ────────┘
+```
+
+To identify the faulty wires, I used the following checks:
+1. The output of any `AND` gate is NOT the input of an `OR` gate, except the case when we are using a one-bit half adder (for x00 and y00) as it produces c<sub>out</sub>.
+2. The output of an `OR` gate is a z wire other than the last z wire, as the `OR` gate produces c<sub>out</sub>.
+3. The output of the first `XOR` gate (for cases when input wires are x and y) is the input of the second `XOR` gate, except the case when we are using a one-bit half adder (for x00 and y00) as it produces c<sub>out</sub>.
+4. The output of the second `XOR` gate is NOT a z wire.
+
+These checks were sufficient to identify all 8 faulty wires for my input. However, I cannot guarantee that these checks will always find all faulty wires for other generated input cases, as additional edge cases might require further investigation.
