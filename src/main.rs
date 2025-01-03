@@ -22,6 +22,7 @@ mod day_21_keypad_conundrum;
 mod day_22_monkey_market;
 mod day_23_lan_party;
 mod day_24_crossed_wires;
+mod day_25_code_chronicle;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let solutions = [
@@ -73,6 +74,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         day_23_lan_party::part_2::solve,
         day_24_crossed_wires::part_1::solve,
         day_24_crossed_wires::part_2::solve,
+        day_25_code_chronicle::part_1::solve,
     ];
 
     for solution in solutions {

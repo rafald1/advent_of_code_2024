@@ -257,3 +257,8 @@ To identify the faulty wires, I used the following checks:
 4. The output of the second `XOR` gate is NOT a z wire.
 
 These checks were sufficient to identify all 8 faulty wires for my input. However, I cannot guarantee that these checks will always find all faulty wires for other generated input cases, as additional edge cases might require further investigation.
+
+### [Day 25](https://adventofcode.com/2024/day/25)
+I used bitwise logic to solve this puzzle. I converted every five-pin tumbler lock and key schematic into an array of u8 numbers, representing the positions of pins in each row. For example, [31, 15, 11, 10, 8, 0, 0] in binary corresponds to the actual schematic [0b00011111, 0b00001111, 0b00001011, 0b00001010, 0b00001000, 0b00000000, 0b00000000].
+
+Initially, I considered using XOR to determine if a lock and key were a perfect match. However, the puzzle required finding all combinations of keys and locks where the key could be inserted. This necessitated changing my XOR check to a NAND operation. Each row of the lock-key pair had to produce `0b11111111`, indicating no overlapping pins. Additionally, I skipped checks for the first and last rows of the schematics since they always produced 0b11111111.
